@@ -35,14 +35,13 @@ public class LocalChat implements Listener {
                     p.sendMessage("§cAguarde 3 segundos para utilizar o chat novamente.");
                     return;
                 }
-        }
-        if (p.hasPermission("lchat.colors")) {
-            e.setFormat("§e[l] " + PermissionEX.getPrefix(p) + "§f" + p.getName() + "§e: " + e.getMessage().replace("&", "§"));
-        }else {
-            e.setFormat("§e[l] " + PermissionEX.getPrefix(p) + "§f" + p.getName() + "§e: " + e.getMessage());
-        }
-        if (p.hasPermission("lchat.destaque")) {
-            e.setFormat(" \n" + e.getFormat() + "\n ");
+                String msg = e.getMessage();
+                if (p.hasPermission("lchat.colors"))
+                    msg = msg.replaceAll("&", "§");
+                 e.setFormat("§e[l] " + PermissionEX.getPrefix(p) + "§f" + p.getName() + "§e: " + msg);
+                }
+               if (p.hasPermission("lchat.destaque")) {
+              e.setFormat(" \n" + e.getFormat() + "\n ");
         }
 
     }
