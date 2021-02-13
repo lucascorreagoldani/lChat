@@ -1,0 +1,9 @@
+name: lChat
+main: lchat.Main
+version: 1.0
+author: Lucas
+commands:
+  chat:
+  tell:
+  g:
+  s:

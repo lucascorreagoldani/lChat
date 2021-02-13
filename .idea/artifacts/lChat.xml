@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="lChat">
+    <output-path>$USER_HOME$/Desktop/Servidor/Lobby/plugins</output-path>
+    <root id="archive" name="lChat.jar">
+      <element id="module-output" name="lChat" />
+    </root>
+  </artifact>
+</component>
