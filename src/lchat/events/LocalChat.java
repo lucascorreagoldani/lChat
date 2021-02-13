@@ -13,35 +13,36 @@ import java.util.ArrayList;
 public class LocalChat implements Listener {
 
     public static ArrayList<Player> delay_local;
+
     static {
         delay_local = new ArrayList<Player>();
     }
 
 
     @EventHandler
-    public void Local (AsyncPlayerChatEvent e) {
+    public void Local(AsyncPlayerChatEvent e) {
         Player p = e.getPlayer();
         {
-                if (!delay_local.contains(p)) {
+            if (!delay_local.contains(p)) {
                 if (!p.hasPermission("lchat.delay"))
                     delay_local.add(p);
-                    Bukkit.getScheduler().scheduleAsyncDelayedTask(Main.getInstance(), new Runnable() {
-                        public void run() {
-                            delay_local.remove(p);
-                        }
-                    }, 3 * 20l);
-                }else {
-                    e.setCancelled(true);
-                    p.sendMessage("§cAguarde 3 segundos para utilizar o chat novamente.");
-                    return;
-                }
-                String msg = e.getMessage();
-                if (p.hasPermission("lchat.colors"))
-                    msg = msg.replaceAll("&", "§");
-                 e.setFormat("§e[l] " + PermissionEX.getPrefix(p) + "§f" + p.getName() + "§e: " + msg);
-                }
-               if (p.hasPermission("lchat.destaque")) {
-              e.setFormat(" \n" + e.getFormat() + "\n ");
+                Bukkit.getScheduler().scheduleAsyncDelayedTask(Main.getInstance(), new Runnable() {
+                    public void run() {
+                        delay_local.remove(p);
+                    }
+                }, 3 * 20l);
+            } else {
+                e.setCancelled(true);
+                p.sendMessage("§cAguarde 3 segundos para utilizar o chat novamente.");
+                return;
+            }
+            String msg = e.getMessage();
+            if (p.hasPermission("lchat.colors"))
+                msg = msg.replaceAll("&", "§");
+            e.setFormat("§e[l] " + PermissionEX.getPrefix(p) + "§f" + p.getName() + "§e: " + msg);
+        }
+        if (p.hasPermission("lchat.destaque")) {
+            e.setFormat(" \n" + e.getFormat() + "\n ");
         }
 
     }
