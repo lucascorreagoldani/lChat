@@ -1,5 +1,6 @@
 package lchat.events;
 
+import com.google.common.collect.Lists;
 import lchat.Main;
 import lchat.addons.PermissionEX;
 import org.bukkit.Bukkit;
@@ -44,7 +45,16 @@ public class LocalChat implements Listener {
         if (p.hasPermission("lchat.destaque")) {
             e.setFormat(" \n" + e.getFormat() + "\n ");
         }
-
+        ArrayList<Player> t = Lists.newArrayList();
+        for (Entity entity : p.getNearbyEntities(100, 100, 100)) {
+            if (!(entity instanceof Player)) {
+                continue;
+            }
+            t.add((Player) entity);
+            t.add(p);
+        }
+        e.getRecipients().clear();
+        e.getRecipients().addAll(t);
     }
 
 }
