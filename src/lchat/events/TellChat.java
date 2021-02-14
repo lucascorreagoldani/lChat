@@ -25,7 +25,7 @@ public class TellChat implements CommandExecutor {
                         return false;
                     }
                     if (t.isOnline() == false) {
-                        p.sendMessage("§Este jogador está offline.");
+                        p.sendMessage("§cEste usuário não está online.");
                         return false;
                     }
                     if (t.getName() == p.getName()) {

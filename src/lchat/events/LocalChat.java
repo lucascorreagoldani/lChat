@@ -40,7 +40,7 @@ public class LocalChat implements Listener {
             String msg = e.getMessage();
             if (p.hasPermission("lchat.colors"))
                 msg = msg.replaceAll("&", "§");
-            e.setFormat("§e[l] " + PermissionEX.getPrefix(p) + "§f" + p.getName() + "§e: " + msg);
+            e.setFormat("§e[l] " + PermissionEX.getPrefix(p) + "§f" + p.getName() + "§f:§e " + msg);
         }
         if (p.hasPermission("lchat.destaque")) {
             e.setFormat(" \n" + e.getFormat() + "\n ");
@@ -55,6 +55,9 @@ public class LocalChat implements Listener {
         }
         e.getRecipients().clear();
         e.getRecipients().addAll(t);
+        if (t.isEmpty()) {
+            p.sendMessage("§eNão há ninguém perto para te escutar.");
+        }
     }
 
 }
